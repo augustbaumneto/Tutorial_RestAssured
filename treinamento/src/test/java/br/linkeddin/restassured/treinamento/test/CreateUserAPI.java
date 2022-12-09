@@ -3,9 +3,10 @@
  */
 package br.linkeddin.restassured.treinamento.test;
 
-import org.hamcrest.Matchers;
+import static org.hamcrest.Matchers.*;
 
 import br.linkedin.restassured.treinamento.UserAPI;
+import static io.restassured.RestAssured.*;
 import io.restassured.http.ContentType;
 
 /**
@@ -28,6 +29,18 @@ public class CreateUserAPI extends UserAPI {
 	}
 
 	/**
+	 * Prepara a requisição
+	 */
+	private void montaRequisicaoCriaUsuarios(String nome, String cargo) {
+		String corpo = "{\""+PARAMETRO_NOME+"\": \""+ nome+"\",\""+PARAMETRO_CARGO+"\": \""+cargo +"\"}";
+		requisicao=
+			given()
+				.body(corpo)
+				.contentType(ContentType.JSON);				
+				
+	}
+	
+	/**
 	 * 
 	 * Chama a requisição post informando o nome e o cargo para cadastro
 	 * 
@@ -35,10 +48,12 @@ public class CreateUserAPI extends UserAPI {
 	 * @param cargo 	a ser cadastrado
 	 */
 	public void chamarAPICriaUsuarios(String nome, String cargo) {
+
+		montaRequisicaoCriaUsuarios(nome, cargo);
 		
-		//monta o body para envio
-		String corpo = "{\""+PARAMETRO_NOME+"\": \""+ nome+"\",\""+PARAMETRO_CARGO+"\": \""+cargo +"\"}";
-		resposta=requisicao.body(corpo).contentType(ContentType.JSON).when().post();
+		resposta=requisicao
+					.when()
+						.post();
 		guardarResposta();	
 	}
 
@@ -50,13 +65,12 @@ public class CreateUserAPI extends UserAPI {
 	 */
 	public void verificaUsuarioCriado(String nome, String cargo) {
 		
-		 json.body(PARAMETRO_NOME, Matchers.is(nome))
-	     .body(PARAMETRO_CARGO, Matchers.is(cargo))
-	     .body(PARAMETRO_DATACRIACAO, Matchers.notNullValue())
-	     .body(PARAMETRO_ID, Matchers.notNullValue()); 
+		 json
+		 	.assertThat().body(PARAMETRO_NOME, is(nome))
+		 	.assertThat().body(PARAMETRO_CARGO, is(cargo))
+		 	.assertThat().body(PARAMETRO_DATACRIACAO, notNullValue())
+		 	.assertThat().body(PARAMETRO_ID, notNullValue()); 
 		
 	}
-	
-	
 
 }

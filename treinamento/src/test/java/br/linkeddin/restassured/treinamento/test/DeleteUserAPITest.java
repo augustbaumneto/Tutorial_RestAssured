@@ -21,7 +21,7 @@ public class DeleteUserAPITest
 	@AfterAll
 	public static void imprimeCorpo() {
 		System.out.println("Test Apaga");
-		System.out.println(api.retornaBody());
+		api.logResposta();
 	}
 	
     /**

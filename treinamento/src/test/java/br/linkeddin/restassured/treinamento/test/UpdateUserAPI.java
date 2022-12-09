@@ -4,7 +4,8 @@
 package br.linkeddin.restassured.treinamento.test;
 
 
-import org.hamcrest.Matchers;
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.*;
 
 import br.linkedin.restassured.treinamento.UserAPI;
 import io.restassured.http.ContentType;
@@ -17,8 +18,7 @@ import io.restassured.http.ContentType;
  */
 public class UpdateUserAPI extends UserAPI {
 
-	//private ArrayList<> data;
-	//private ArrayList<> support;
+
 
 	//Estrutura do json de resposta
 	private static final String PARAMETRO_NOME = "name";
@@ -34,6 +34,18 @@ public class UpdateUserAPI extends UserAPI {
 	}
 
 	/**
+	 * Prepara a requisição
+	 */
+	private void montaRequisicaoAtualizaUsuario(String nome, String cargo) {
+		String corpo = "{\""+PARAMETRO_NOME+"\": \""+ nome+"\",\""+PARAMETRO_CARGO+"\": \""+cargo +"\"}";
+		requisicao=
+			given()
+				.body(corpo)
+				.contentType(ContentType.JSON);				
+				
+	}
+	
+	/**
 	 * 
 	 * Chama a requisição put informando o id para procura e os dados nome e cargo para atualizar
 	 * 
@@ -44,10 +56,11 @@ public class UpdateUserAPI extends UserAPI {
 	 */
 	public void chamarAPIAlteraUsuario(String nome, String cargo, int id) {
 		String idusuario = Integer.toString(id);
+		montaRequisicaoAtualizaUsuario(nome, cargo);
 		
-		//monta o body para envio
-		String corpo = "{\""+PARAMETRO_NOME+"\": \""+ nome+"\",\""+PARAMETRO_CARGO+"\": \""+cargo +"\"}";
-		resposta=requisicao.body(corpo).contentType(ContentType.JSON).when().put("/"+idusuario);
+		resposta=requisicao
+				.when()
+					.put("/"+idusuario);
 		guardarResposta();	
 	}
 	
@@ -59,9 +72,10 @@ public class UpdateUserAPI extends UserAPI {
 	 */
 	public void verificaUsuarioModificado(String nome, String cargo) {
 		
-		 json.body(PARAMETRO_NOME, Matchers.is(nome))
-	     .body(PARAMETRO_CARGO, Matchers.is(cargo))
-	     .body(PARAMETRO_DATAALTERACAO, Matchers.notNullValue());
+		 json
+		 	.assertThat().body(PARAMETRO_NOME, is(nome))
+		 	.assertThat().body(PARAMETRO_CARGO, is(cargo))
+		 	.assertThat().body(PARAMETRO_DATAALTERACAO, notNullValue());
 		
 	}
 	

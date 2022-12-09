@@ -23,7 +23,7 @@ public class CreateUserAPITest
 	@AfterAll
 	public static void imprimeCorpo() {
 		System.out.println("Test Criação");
-		System.out.println(api.retornaBody());
+		api.logResposta();
 	}
 	
     /**

@@ -5,6 +5,7 @@ package br.linkeddin.restassured.treinamento.test;
 
 import br.linkedin.restassured.treinamento.UserAPI;
 import io.restassured.http.ContentType;
+import static io.restassured.RestAssured.*;
 
 /**
  * @author August Neto
@@ -23,6 +24,16 @@ public class DeleteUserAPI extends UserAPI {
 		super();
 	}
 	
+	/**
+	 * Prepara a requisição
+	 */
+	private void montaRequisicaoApagaUsuarios() {
+		requisicao=
+				given()
+				.contentType(ContentType.JSON);
+					
+	}
+	
 	
 	/**
 	 * Chama o metodo delete de usuários e guarda o json de retorno
@@ -30,9 +41,13 @@ public class DeleteUserAPI extends UserAPI {
 	 * @param id  Id do usuario a ser pago
 	 */
 	public void chamarAPIApagaUsuario(int id) {
+		
+		montaRequisicaoApagaUsuarios();
 		String idusuario = Integer.toString(id);
 		
-		resposta = requisicao.contentType(ContentType.JSON).when().delete("/"+idusuario);
+		resposta = requisicao
+				.when()
+					.delete("/"+idusuario);
 		guardarResposta();
 
 	}

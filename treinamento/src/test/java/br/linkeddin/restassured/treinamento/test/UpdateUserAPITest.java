@@ -21,7 +21,7 @@ public class UpdateUserAPITest
 	@AfterAll
 	public static void imprimeCorpo() {
 		System.out.println("Test Alteração");
-		System.out.println(api.retornaBody());
+		api.logResposta();
 	}
 	
     /**

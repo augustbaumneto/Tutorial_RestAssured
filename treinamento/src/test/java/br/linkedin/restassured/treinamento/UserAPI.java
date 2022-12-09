@@ -3,10 +3,9 @@
  */
 package br.linkedin.restassured.treinamento;
 
-import io.restassured.RestAssured;
+import static io.restassured.RestAssured.*;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import io.restassured.response.ResponseBody;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 
@@ -32,10 +31,7 @@ public class UserAPI {
 	 */
 	protected UserAPI() {
 		//Construtor padrão
-		RestAssured.baseURI = URI_USERS;
-		//Monta a requisição padrão
-		requisicao = RestAssured.given();
-
+		baseURI = URI_USERS;
 	}
 	
 	/**
@@ -45,8 +41,10 @@ public class UserAPI {
 	protected void guardarResposta() {
 		
 		//Guarda a resposta
-		json = resposta.then();
-		jsonpath =resposta.jsonPath();
+		json = resposta
+				.then();
+		jsonpath =resposta
+				.jsonPath();
 
 	}
 	
@@ -57,7 +55,9 @@ public class UserAPI {
 	 */
 	public void verificaStatus(int codigoretorno) {
 
-			json.statusCode(codigoretorno);
+			json
+				.assertThat()
+				.statusCode(codigoretorno);
 	}
 	
 	/**
@@ -67,7 +67,20 @@ public class UserAPI {
 	
 	public String retornaBody() {
 
-		return resposta.prettyPrint();
+		return resposta
+				.prettyPrint();
 	}
 
+	/**
+	 *   Imprime log da resposta
+	 * 
+	 */
+	
+	public void logResposta() {
+
+		json
+			.log().all();
+		
+	}
+	
 }

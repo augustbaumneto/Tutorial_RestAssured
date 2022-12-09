@@ -21,7 +21,7 @@ public class SingleUserAPITest
 	@AfterAll
 	public static void imprimeCorpo() {
 		System.out.println("Test Consulta Lista");
-		System.out.println(api.retornaBody());
+		api.logResposta();
 	}
 	
     /**
@@ -32,6 +32,7 @@ public class SingleUserAPITest
     {
     	api.chamarAPIListaUsuarios();
     	api.verificaStatus(200);
+    	api.verificaListaRetornada();
     
     }
     
