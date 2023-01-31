@@ -21,9 +21,9 @@ public class UpdateUserAPI extends UserAPI {
 
 
 	//Estrutura do json de resposta
-	private static final String PARAMETRO_NOME = "name";
-	private static final String PARAMETRO_CARGO = "job";
-	private static final String PARAMETRO_DATAALTERACAO = "updatedAt";
+	public static final String PARAMETRO_NOME = "name";
+	public static final String PARAMETRO_CARGO = "job";
+	public static final String PARAMETRO_DATAALTERACAO = "updatedAt";
 
 	
 	
@@ -36,7 +36,7 @@ public class UpdateUserAPI extends UserAPI {
 	/**
 	 * Prepara a requisição
 	 */
-	private void montaRequisicaoAtualizaUsuario(String nome, String cargo) {
+	public void montaRequisicaoAtualizaUsuario(String nome, String cargo) {
 		String corpo = "{\""+PARAMETRO_NOME+"\": \""+ nome+"\",\""+PARAMETRO_CARGO+"\": \""+cargo +"\"}";
 		requisicao=
 			given()

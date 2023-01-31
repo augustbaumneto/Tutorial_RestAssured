@@ -8,7 +8,7 @@ import org.junit.jupiter.api.*;
 public class DeleteUserAPITest 
 {
 	
-	private static DeleteUserAPI api;
+	public static DeleteUserAPI api;
 	
 	//Iniciliza a API
 	@BeforeAll

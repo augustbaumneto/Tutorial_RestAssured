@@ -8,7 +8,7 @@ import org.junit.jupiter.api.*;
 public class SingleUserAPITest 
 {
 	
-	private static SingleUserAPI api;
+	public static SingleUserAPI api;
 	
 	//Iniciliza a API
 	@BeforeAll

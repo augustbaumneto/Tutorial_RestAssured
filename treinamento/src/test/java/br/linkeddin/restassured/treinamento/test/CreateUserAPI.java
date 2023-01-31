@@ -18,10 +18,10 @@ import io.restassured.http.ContentType;
 public class CreateUserAPI extends UserAPI {
 
 	//Estrutura do json de resposta
-	private static final String PARAMETRO_NOME = "name";
-	private static final String PARAMETRO_CARGO = "job";
-	private static final String PARAMETRO_ID = "id";
-	private static final String PARAMETRO_DATACRIACAO = "createdAt";
+	public static final String PARAMETRO_NOME = "name";
+	public static final String PARAMETRO_CARGO = "job";
+	public static final String PARAMETRO_ID = "id";
+	public static final String PARAMETRO_DATACRIACAO = "createdAt";
 	
 	//Construtor padrão
 	public CreateUserAPI() {
@@ -31,7 +31,7 @@ public class CreateUserAPI extends UserAPI {
 	/**
 	 * Prepara a requisição
 	 */
-	private void montaRequisicaoCriaUsuarios(String nome, String cargo) {
+	public void montaRequisicaoCriaUsuarios(String nome, String cargo) {
 		String corpo = "{\""+PARAMETRO_NOME+"\": \""+ nome+"\",\""+PARAMETRO_CARGO+"\": \""+cargo +"\"}";
 		requisicao=
 			given()

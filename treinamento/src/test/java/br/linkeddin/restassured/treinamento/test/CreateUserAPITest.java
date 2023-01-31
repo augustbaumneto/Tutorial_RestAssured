@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 public class CreateUserAPITest 
 {
 	
-	private static CreateUserAPI api;
+	public static CreateUserAPI api;
 	
 	//Iniciliza a API
 	@BeforeAll

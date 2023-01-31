@@ -17,12 +17,12 @@ import static org.hamcrest.Matchers.*;
 public class SingleUserAPI extends UserAPI {
 
 	//Parametros da resposta 
-	private static final String PARAM_RESP_TOTAL = "total";
-	private static final String PARAM_RESP_ID = "id";
-	private static final String PARAM_RESP_EMAIL = "email";
-	private static final String PARAM_RESP_FIRSTNAME = "first_name";
-	private static final String PARAM_RESP_LASTNAME = "last_name";
-	private static final String PARAM_RESP_AVATAR = "avatar";
+	public static final String PARAM_RESP_TOTAL = "total";
+	public static final String PARAM_RESP_ID = "id";
+	public static final String PARAM_RESP_EMAIL = "email";
+	public static final String PARAM_RESP_FIRSTNAME = "first_name";
+	public static final String PARAM_RESP_LASTNAME = "last_name";
+	public static final String PARAM_RESP_AVATAR = "avatar";
 	
 	
 	//Construtor padrão
@@ -34,7 +34,7 @@ public class SingleUserAPI extends UserAPI {
 	/**
 	 * Prepara a requisição
 	 */
-	private void montaAPIListaUsuarios() {
+	public void montaAPIListaUsuarios() {
 		requisicao = 
 				RestAssured.given();				
 				

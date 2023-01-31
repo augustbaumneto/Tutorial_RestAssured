@@ -27,7 +27,7 @@ public class DeleteUserAPI extends UserAPI {
 	/**
 	 * Prepara a requisição
 	 */
-	private void montaRequisicaoApagaUsuarios() {
+	public void montaRequisicaoApagaUsuarios() {
 		requisicao=
 				given()
 				.contentType(ContentType.JSON);
